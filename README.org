@@ -1,0 +1,6 @@
+#+title: Ejemplo repo en GIT
+#+author: Alaín Chevanier <[[mailto:alain.chevanier@ciencias.unam.mx][alain.chevanier@ciencias.unam.mx]]>
+
+* Objetivo
+- Utilizar GIT y un flujo en github para un problema
+- Resolver el problema de Connect Four
