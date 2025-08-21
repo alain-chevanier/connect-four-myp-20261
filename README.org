@@ -4,3 +4,56 @@
 * Objetivo
 - Utilizar GIT y un flujo en github para un problema
 - Resolver el problema de Connect Four
+* Objetos:
+** Board
+** Token
+** Player
+** Game
+* Diagrama
+#+BEGIN_SRC plantuml
+@startuml
+class Board {
+        - tokens: Token[][]
+        + placeToken(int columnm, Token token): boolean
+        + isColumnFull(int column): boolean
+
+}
+class Token {
+        - color: String
+}
+class Player {
+        - name: String
+        - token: Token
+}
+class Game {
+        - board: Board
+        - playerOne: Player
+        - playerTwo: Player
+        - playerOneTurn?: Boolean
+        + placeToken(int column): boolean
+        + showBoard(): void
+}
+
+Game --> Board
+Game --> Player
+Board--> Token
+Player --> Token
+@enduml
+#+END_SRC
+
+#+RESULTS:
+[[file:/var/folders/hd/q2n3q9xn62q0svprl6v63mdm0000gn/T/babel-u2Ju20/plantuml-nQDmLv.png]]
+
+
+* API Gateway
+Key Purposes of an API Gateway
+
++ **Request Routing**: The API Gateway routes incoming client requests to the appropriate backend services based on the request's path, headers, or other parameters.
++ **Load Balancing**: It distributes incoming traffic across multiple instances of backend services to ensure high availability and scalability.
++ **Authentication and Authorization**: The gateway enforces security by validating client credentials and ensuring only authorized users can access specific services.
++ **Protocol Translation**: It translates protocols (e.g., HTTP to gRPC or WebSocket) to enable seamless communication between clients and services.
++ **Rate Limiting and Throttling**: The gateway enforces limits on the number of requests a client can make within a specific time frame to prevent abuse and ensure fair usage.
++ **Caching**: It caches responses to reduce latency and improve performance for frequently accessed resources.
++ **Centralized Logging and Monitoring**: The gateway collects and forwards logs and metrics to monitoring systems for better observability.
++ **Request Transformation**: It modifies incoming requests or outgoing responses (e.g., adding headers, changing payload formats) to meet specific requirements.
++ **Service Discovery**: The gateway integrates with service discovery mechanisms to dynamically route requests to available service instances.
