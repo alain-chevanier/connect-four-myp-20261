@@ -3,6 +3,9 @@
 
 * Ejercicio Modelado y Porgramcion
 ** Conecta Cuatro
+*** Código fuente
+Paquete [[file:src/main/java/connect4/][connect4]]
+
 *** Objetivo
 - Utilizar GIT y un flujo en github para un problema
 - Resolver el problema de Connect Four
@@ -29,6 +32,7 @@ _Connect Four_ es un juego de estrategia para dos jugadores que se juega en un t
 **** Token
 **** Player
 **** Game
+
 *** Diagrama
 #+BEGIN_SRC plantuml :file  connect-4-uml-diagram.png :exports results :results file
 @startuml
@@ -41,7 +45,6 @@ class Board {
         + isFull(): boolean
         + toString(): String
         + getWinner(): Optional<Token>
-
 }
 class Token {
         - color: String
@@ -55,6 +58,8 @@ class Game {
         - players: Player[]
         - currentPlayerTurnIdx: int
         + start(): void
+        + placeToken(int column): boolean
+        + showBoard(): void
 }
 
 Game --> Board
@@ -65,6 +70,7 @@ Player --> Token
 #+END_SRC
 
 [[./uml-diagram.png]]
-**
-**
+
 ** String Calculator - Ejemplo TDD
+*** Código fuente
+Paquete [[file:src/main/java/tdd/][StringCalculator]]
