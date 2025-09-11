@@ -2,13 +2,22 @@ package connect4;
 
 import java.util.Optional;
 
+import lombok.EqualsAndHashCode;
+
+// Nota: this adds a default and correct equals and hashCode implementation for us
+@EqualsAndHashCode
 public class Board {
+    private static final String SLOT_SEPARATOR = " | ";
+    private static final String EMPTY_SLOT = "__";
+
     private static final int WIN_SIZE = 4;
 
     private final Token[][] grid;
     private final int rows;
     private final int columns;
+    @EqualsAndHashCode.Exclude
     private int lastRow;
+    @EqualsAndHashCode.Exclude
     private int lastColumn;
 
     public Board() {
@@ -43,7 +52,7 @@ public class Board {
 
     @Override
     public String toString() {
-        // The format should be::
+        // The format should be:
         // BL | RE | BL
         // RE | BL | RE
         // BL | RE | BL
@@ -51,12 +60,12 @@ public class Board {
         for (int row = this.rows - 1; row >= 0; row--) {
             for (int col = 0; col < this.columns; col++) {
                 if (this.grid[row][col] == null) {
-                    sb.append("__");
+                    sb.append(EMPTY_SLOT);
                 } else {
                     sb.append(this.grid[row][col].toString().substring(0, 2));
                 }
                 if (col < this.columns - 1) {
-                    sb.append(" | ");
+                    sb.append(SLOT_SEPARATOR);
                 }
             }
             if (row > 0) {
@@ -64,28 +73,6 @@ public class Board {
             }
         }
         return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Board board = (Board) o;
-        if (this.rows != board.rows || this.columns != board.columns)
-            return false;
-        for (int row = 0; row < this.rows; row++) {
-            for (int col = 0; col < this.columns; col++) {
-                if (this.grid[row][col] == null) {
-                    if (board.grid[row][col] != null)
-                        return false;
-                } else {
-                    if (!this.grid[row][col].equals(board.grid[row][col])) return false;
-                }
-            }
-        }
-        return true;
     }
 
     public void placeToken(int column, Token token) {
@@ -108,6 +95,9 @@ public class Board {
         return checkHorizontalWin(lastToken)
             .or(() -> checkVerticalWin(lastToken));
         // TODO: completar la implementacion considerando los casos de abajo.
+        // TODO: la implementacion de los cuatro casos se puede unificar
+        // TODO: descomentar los metodos comentados en las pruebas unitarias
+        //       para vertificar que las implementaciones son correctas
         // un jugador gana si conecta 4 en una diagonal de pendiente positiva
         // un jugador gana si conecta 4 en una diagonal de pendiente negativa
         // si nunguna de las anteriores se cumple nadie ha ganado

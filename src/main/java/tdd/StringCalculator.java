@@ -9,6 +9,9 @@ public class StringCalculator {
             return 0;
         }
 
+        // Reemplazamos este códico imperativo
+        // con programación funcional abajo
+        //
         // int result = 0;
         // for (String s : string.split(",")) {
         //     result += Integer.parseInt(s);

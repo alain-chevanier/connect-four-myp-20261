@@ -1,4 +1,4 @@
-package connect4;;
+package connect4;
 
 import org.junit.jupiter.api.Test;
 
@@ -67,44 +67,6 @@ public class BoardTest {
                        "BL | RE | BL\n" +
                        "RE | BL | RE";
         assertThat(board.toString(), is(expected));
-    }
-
-    @Test
-    public void test_case_equals () {
-        var blue = new Token("BLUE");
-        var red = new Token("RED");
-        var grid1 = new Token[][] {
-            {red, blue, red},
-            {blue, red, blue},
-            {red, null, red}
-        };
-        var grid2 = new Token[][] {
-            {red, blue, red},
-            {blue, red, blue},
-            {red, null, red}
-        };
-        var board1 = new Board(grid1);
-        var board2 = new Board(grid2);
-        assertThat(board1, is(equalTo(board2)));
-    }
-
-    @Test
-    public void test_case_not_equals () {
-        var blue = new Token("BLUE");
-        var red = new Token("RED");
-        var grid1 = new Token[][] {
-            {red, blue, red},
-            {blue, red, blue},
-            {red, null, red}
-        };
-        var grid2 = new Token[][] {
-            {red, blue, red},
-            {blue, red, blue},
-            {blue, null, red}
-        };
-        var board1 = new Board(grid1);
-        var board2 = new Board(grid2);
-        assertThat(board1, is(not(equalTo(board2))));
     }
 
     @Test
